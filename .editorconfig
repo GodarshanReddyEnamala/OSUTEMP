@@ -13,7 +13,7 @@ tab_width = 4
 
 # New line preferences
 end_of_line = crlf
-insert_final_newline = false
+insert_final_newline = true
 
 #### .NET Code Actions ####
 
@@ -125,7 +125,7 @@ csharp_style_prefer_readonly_struct_member = true
 csharp_prefer_braces = true
 csharp_prefer_simple_using_statement = true
 csharp_prefer_system_threading_lock = true
-csharp_style_namespace_declarations = block_scoped
+#csharp_style_namespace_declarations = block_scoped
 csharp_style_prefer_method_group_conversion = true
 csharp_style_prefer_primary_constructors = true
 csharp_style_prefer_simple_property_accessors = true
@@ -246,3 +246,143 @@ dotnet_naming_style.begins_with_i.required_prefix = I
 dotnet_naming_style.begins_with_i.required_suffix = 
 dotnet_naming_style.begins_with_i.word_separator = 
 dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+
+# ----------------------------------------------------------------------
+# Added C# code style and formatting rules (inspired by ASP.NET Core repo)
+#
+# Source:
+# https://github.com/dotnet/aspnetcore/blob/main/.editorconfig
+#
+# Added On:
+# 2026-04-29
+#
+# Purpose:
+# - Align project coding standards with Microsoft ASP.NET Core guidelines
+# - Improve code readability, consistency, and maintainability
+# - Enforce modern C# best practices (var usage, file-scoped namespaces, etc.)
+# - Standardize naming conventions (PascalCase, _camelCase for fields)
+# - Ensure consistent formatting (braces, new lines, indentation)
+#
+# Notes:
+# - Most rules are set to 'suggestion' to avoid breaking builds
+# - These rules can be elevated to 'warning' or 'error' based on team standards
+# - Some rules (like formatting) are enforced by IDE/formatters, not compiler
+# - Inspired rules may be customized further based on project requirements
+#
+# Caution:
+# - Do NOT add severity (e.g., :warning) to rules that don't support it
+#   as they will be ignored silently
+#
+# Maintained By:
+# ----------------------------------------------------------------------
+
+dotnet_sort_system_directives_first = true:error
+# To insert a blank line between different groups of using directives.
+dotnet_separate_import_directive_groups = true:error
+
+# use int.MaxValue over Int32.MaxValue
+# dotnet_style_predefined_type_for_member_access = true:warning
+
+# Disallow throw expressions.(optional-only for readability)
+csharp_style_throw_expression = false:suggestion
+
+# Namespace settings
+csharp_style_namespace_declarations = file_scoped
+
+# name all constant fields using PascalCase
+dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = warning
+dotnet_naming_rule.constant_fields_should_be_pascal_case.symbols  = constant_fields
+dotnet_naming_rule.constant_fields_should_be_pascal_case.style    = pascal_case_style
+dotnet_naming_symbols.constant_fields.applicable_kinds   = field
+dotnet_naming_symbols.constant_fields.required_modifiers = const
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+# internal and private fields should be _camelCase
+dotnet_naming_rule.camel_case_for_private_internal_fields.severity = warning
+dotnet_naming_rule.camel_case_for_private_internal_fields.symbols  = private_internal_fields
+dotnet_naming_rule.camel_case_for_private_internal_fields.style    = camel_case_underscore_style
+dotnet_naming_symbols.private_internal_fields.applicable_kinds = field
+dotnet_naming_symbols.private_internal_fields.applicable_accessibilities = private, internal
+dotnet_naming_style.camel_case_underscore_style.required_prefix = _
+dotnet_naming_style.camel_case_underscore_style.capitalization = camel_case
+
+
+
+# Private/Internal STATIC fields -> s_camelCase
+dotnet_naming_rule.static_fields_should_be_s_camel_case.severity = warning
+dotnet_naming_rule.static_fields_should_be_s_camel_case.symbols = static_fields
+dotnet_naming_rule.static_fields_should_be_s_camel_case.style = s_camel_case_style
+
+dotnet_naming_symbols.static_fields.applicable_kinds = field
+dotnet_naming_symbols.static_fields.applicable_accessibilities = private, internal
+dotnet_naming_symbols.static_fields.required_modifiers = static
+
+dotnet_naming_style.s_camel_case_style.required_prefix = s_
+dotnet_naming_style.s_camel_case_style.capitalization = camel_case
+
+# Method parameters should use camelCase
+dotnet_naming_rule.method_parameters_should_be_camel_case.severity = warning
+dotnet_naming_rule.method_parameters_should_be_camel_case.symbols = method_parameters
+dotnet_naming_rule.method_parameters_should_be_camel_case.style = camel_case_style
+
+dotnet_naming_symbols.method_parameters.applicable_kinds = parameter
+
+dotnet_naming_style.camel_case_style.capitalization = camel_case
+
+# Local variables Should be camelCase
+dotnet_naming_rule.local_variables_should_be_camel_case.severity = warning
+dotnet_naming_rule.local_variables_should_be_camel_case.symbols = local_variables
+dotnet_naming_rule.local_variables_should_be_camel_case.style = camel_case_style
+
+# Symbol group
+dotnet_naming_symbols.local_variables.applicable_kinds = local
+
+# Naming style
+dotnet_naming_style.camel_case_style.capitalization = camel_case
+
+
+
+
+# ---------------------------------------------
+# Roslynator Analyzer Configuration
+# ---------------------------------------------
+# Source:
+# Rules referenced from official Roslynator documentation:
+# https://josefpihrt.github.io/docs/roslynator/configuration
+#
+# Note:
+# Severity levels have been customized based on project
+# readability, consistency, and team coding standards.
+# ---------------------------------------------
+
+# RCS0001: Add blank line after embedded statement
+# Customized as suggestion (optional readability improvement)
+dotnet_diagnostic.rcs0001.severity = suggestion
+
+# RCS0003: Add blank line after using directives
+# Enforced as warning for consistent structure
+dotnet_diagnostic.rcs0003.severity = warning
+
+# RCS0005: Add blank line before #endregion
+# Enforced for better visual separation of regions
+dotnet_diagnostic.rcs0005.severity = warning
+
+
+# RCS0008: Add blank line after closing brace
+# Enforced to improve readability between logical blocks
+dotnet_diagnostic.rcs0008.severity = warning
+
+# RCS0009: Add blank line between declaration and documentation comment
+# Enforced for better documentation clarity
+dotnet_diagnostic.rcs0009.severity = warning
+
+# RCS0013: Add blank line between different declaration types
+# Enforced to separate different code constructs (field, method, property)
+dotnet_diagnostic.rcs0013.severity = warning
+
+# Remove unnecessary blank line
+dotnet_diagnostic.rcs0063.severity = warning
+
+# IDE1006: # Method names should be PascalCase
+dotnet_diagnostic.IDE1006.severity = warning

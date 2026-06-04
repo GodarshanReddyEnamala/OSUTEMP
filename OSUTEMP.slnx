@@ -1,6 +1,13 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
   </Folder>
+  <Project Path="ClassLibrary1/OSU.Service.csproj" Id="79aec076-ec7d-414c-8ba8-6234aa538604" />
+  <Project Path="OSU.Common/OSU.Common.csproj" Id="f72b5d92-a4fc-4b7b-b0f8-b281b1b3be51" />
+  <Project Path="OSU.DATA/OSU.Data.csproj" Id="4048e48c-b99c-4377-bde7-25670bf79aef" />
+  <Project Path="OSU.DataObjects/OSU.DataObjects.csproj" Id="f616634c-ef7b-4f73-9f48-c2eeedb60ed4" />
+  <Project Path="OSU.Entities/OSU.Entities.csproj" Id="f78d9861-28a3-4df9-a2b3-873ca72a3fc6" />
+  <Project Path="OSU.REPO/OSU.Repo.csproj" Id="e42fec4b-5642-4d44-ac72-6c219f56270e" />
   <Project Path="OSUTEMP/OSUTEMP.csproj" />
 </Solution>

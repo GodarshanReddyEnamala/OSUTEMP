@@ -1,5 +1,12 @@
+
+using Microsoft.EntityFrameworkCore;
+using OSUTEMP;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -20,4 +27,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+#pragma warning disable S6966 // Awaitable method should be used
 app.Run();
+#pragma warning restore S6966 // Awaitable method should be used
