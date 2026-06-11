@@ -17,6 +17,7 @@ public class TrailNote
     public int? ChildNoteId { get; set; }
     // Status
     public string? NoteStatus { get; set; }
+    public bool IsPinned { get; set; } = false;
     // Audit Fields
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAtUtc { get; set; } = DateTime.UtcNow;    

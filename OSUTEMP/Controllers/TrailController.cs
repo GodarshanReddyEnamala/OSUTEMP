@@ -16,7 +16,7 @@ public class TrailController(AppDbContext context) : ControllerBase
 {
     private readonly AppDbContext _context = context;
 
-    public const int MaxRetries = 3;
+    public const int c_MaxRetries = 3;
 
     private readonly static string s_connectionString = "sudfhuhzdh";
 

@@ -290,13 +290,16 @@ csharp_style_throw_expression = false:suggestion
 # Namespace settings
 csharp_style_namespace_declarations = file_scoped
 
-# name all constant fields using PascalCase
-dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = warning
-dotnet_naming_rule.constant_fields_should_be_pascal_case.symbols  = constant_fields
-dotnet_naming_rule.constant_fields_should_be_pascal_case.style    = pascal_case_style
-dotnet_naming_symbols.constant_fields.applicable_kinds   = field
+# Constant fields must start with c_
+dotnet_naming_rule.constant_fields_should_have_c_prefix.severity = warning
+dotnet_naming_rule.constant_fields_should_have_c_prefix.symbols = constant_fields
+dotnet_naming_rule.constant_fields_should_have_c_prefix.style = constant_fields_style
+
+dotnet_naming_symbols.constant_fields.applicable_kinds = field
 dotnet_naming_symbols.constant_fields.required_modifiers = const
-dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+dotnet_naming_style.constant_fields_style.required_prefix = c_
+dotnet_naming_style.constant_fields_style.capitalization = pascal_case
 
 # internal and private fields should be _camelCase
 dotnet_naming_rule.camel_case_for_private_internal_fields.severity = warning
